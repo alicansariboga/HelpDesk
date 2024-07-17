@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "SignUp";
+    Layout = "~/Views/LayoutLogin/Index.cshtml";
+}
+
+<h1>SignUp</h1>
+
+<div class="container">
+    <div class="col-md-12 content-center">
+        <div class="card-plain">
+            <form class="form" method="" action="">
+                <div class="header">
+                    <div class="logo-container">
+                        <img src="~/images/logo.svg" alt="">
+                    </div>
+                    <h5>Kayıt Ol</h5>
+                    <span>Yeni Üye Kaydı</span>
+                </div>
+                <div class="content">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Kullanıcı Adı">
+                        <span class="input-group-addon">
+                            <i class="zmdi zmdi-account-circle"></i>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Email">
+                        <span class="input-group-addon">
+                            <i class="zmdi zmdi-email"></i>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" placeholder="Şifre" class="form-control" />
+                        <span class="input-group-addon">
+                            <i class="zmdi zmdi-lock"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="checkbox">
+                    <input id="terms" type="checkbox">
+                    <label for="terms">
+                        <a href="javascript:void(0);">Koşullar &amp; Şartarı</a> kabul ediyorum.
+                    </label>
+                </div>
+                <div class="footer text-center">
+                    <a href="#" class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light">KAYIT OL</a>
+                    <h6 class="m-t-20"><a class="link" href="sign-in.html">Zaten bir üyeliğiniz var mı?</a></h6>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

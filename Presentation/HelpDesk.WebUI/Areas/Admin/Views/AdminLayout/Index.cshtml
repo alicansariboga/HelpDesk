@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html class="no-js " lang="tr">
+
+@await Component.InvokeAsync("_LayoutHeadComponentPartial")
+
+<body class="theme-cyan">
+
+    <div class="overlay"></div>
+
+    <!-- Top Bar -->
+    @await Component.InvokeAsync("_LayoutNavbarComponentPartial")
+
+    <!-- Left Sidebar -->
+    @await Component.InvokeAsync("_LayoutLeftSidebarComponentPartial")
+
+    <!-- Right Sidebar -->
+    @await Component.InvokeAsync("_LayoutRightSidebarComponentPartial")
+
+    <!-- Chat-launcher -->
+    @await Component.InvokeAsync("_LayoutChatComponentPartial")
+
+    @RenderBody()
+
+    @await Component.InvokeAsync("_LayoutScriptsComponentPartial")
+
+</body>
+</html>
