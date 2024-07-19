@@ -3,20 +3,20 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddHttpClient();
 
-// JWT Configuration
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCookie(JwtBearerDefaults.AuthenticationScheme, opt =>
-//{
-//    opt.LoginPath = "/Login/SignIn/";
-//    opt.LogoutPath = "/Login/SignOut/";
-//    opt.AccessDeniedPath = "/Pages/Error403/";
-//    opt.Cookie.SameSite = SameSiteMode.Strict;
-//    opt.Cookie.HttpOnly = true;
-//    opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
-//    opt.Cookie.Name = "HelpDeskJwt";
-//});
+//JWT Configuration
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCookie(JwtBearerDefaults.AuthenticationScheme, opt =>
+{
+    opt.LoginPath = "/Login/SignIn/";
+    opt.LogoutPath = "/Login/SignOut/";
+    //opt.AccessDeniedPath = "/Pages/Error403/";
+    opt.Cookie.SameSite = SameSiteMode.Strict;
+    opt.Cookie.HttpOnly = true;
+    opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+    opt.Cookie.Name = "HelpDeskJwt";
+});
 
 var app = builder.Build();
 
@@ -43,9 +43,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Dashboard}/{action=Index}/{id?}");
-
-app.Run();
+    pattern: "{controller=Login}/{action=SignIn}/{id?}");
 
 // Admin Area
 app.UseEndpoints(endpoints =>
@@ -55,3 +53,5 @@ app.UseEndpoints(endpoints =>
       pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
     );
 });
+
+app.Run();
