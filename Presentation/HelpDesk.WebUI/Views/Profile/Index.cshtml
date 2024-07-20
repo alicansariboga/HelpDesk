@@ -1,4 +1,5 @@
-﻿
+﻿@model ResultAppUserDto
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Layout/Index.cshtml";
@@ -29,7 +30,7 @@
             <div class="col-lg-4 col-md-12">
                 <div class="card member-card">
                     <div class="header l-cyan">
-                        <h4 class="m-t-10">Michael Dorsey</h4>
+                        <h4 class="m-t-10">@Model.Name @Model.Surname</h4>
                     </div>
                     <div class="member-img">
                         <a href="profile.html" class="">

@@ -4,8 +4,8 @@
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(connectionString: @"Server=DESKTOP-4M0OQRD\SQLEXPRESS;Database=HelpDesk;User Id=pixxaer;Password=453885;Encrypt=false;TrustServerCertificate=true;");
-            optionsBuilder.UseSqlServer(connectionString: @"Server=DESKTOP-KIBK0ID\SQLEXPRESS;Database=HelpDesk;TrustServerCertificate=true;Trusted_Connection=true;");
+            optionsBuilder.UseSqlServer(connectionString: @"Server=DESKTOP-4M0OQRD\SQLEXPRESS;Database=HelpDesk;User Id=pixxaer;Password=453885;Encrypt=false;TrustServerCertificate=true;");
+            //optionsBuilder.UseSqlServer(connectionString: @"Server=DESKTOP-KIBK0ID\SQLEXPRESS;Database=HelpDesk;TrustServerCertificate=true;Trusted_Connection=true;");
         }
 
         public DbSet<AppRole> AppRoles { get; set; }

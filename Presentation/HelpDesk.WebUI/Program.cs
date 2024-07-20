@@ -45,6 +45,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Login}/{action=SignIn}/{id?}");
 
+
 // Admin Area
 app.UseEndpoints(endpoints =>
 {
