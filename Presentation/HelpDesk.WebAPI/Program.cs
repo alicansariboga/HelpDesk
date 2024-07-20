@@ -1,6 +1,8 @@
 using HelpDesk.Application.Interfaces.AppUserInterfaces;
+using HelpDesk.Application.Interfaces.TicketInterfaces;
 using HelpDesk.Application.Tools;
 using HelpDesk.Persistence.Repositories.AppUserRepositories;
+using HelpDesk.Persistence.Repositories.TicketRepositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -30,6 +32,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 builder.Services.AddScoped<HelpDeskContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IAppUserRepository), typeof(AppUserRepository));
+builder.Services.AddScoped(typeof(ITicketRepository), typeof(TicketRepository));
 #endregion
 
 // ServiceRegistration

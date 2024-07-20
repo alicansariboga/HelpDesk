@@ -22,6 +22,12 @@
             var value = await _mediator.Send(new GetTicketByIdQuery(id));
             return Ok(value);
         }
+        [HttpGet("TicketListByUserId")]
+        public async Task<IActionResult> TicketListByUserId(int id)
+        {
+            var values = await _mediator.Send(new GetTicketByUserIdQuery(id));
+            return Ok(values);
+        }
         [HttpPost]
         public async Task<IActionResult> CreateTicket(CreateTicketCommand command)
         {

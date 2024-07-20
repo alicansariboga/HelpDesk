@@ -26,7 +26,7 @@ namespace HelpDesk.WebUI.Controllers
             return View();
         }
         public IActionResult Create()
-        {
+        { 
             return View();
         }
         [HttpPost]
