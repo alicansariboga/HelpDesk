@@ -1,4 +1,5 @@
 ﻿using HelpDesk.DTO.TicketDtos;
+using HelpDesk.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -30,10 +31,10 @@ namespace HelpDesk.WebUI.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(CreateTicketDto createTicketDto)
+        public async Task<IActionResult> Create(CreateTicketViewModel createTicketViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createTicketDto);
+            var jsonData = JsonConvert.SerializeObject(createTicketViewModel.createTicketDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7099/api/Tickets/", stringContent);
             if (responseMessage.IsSuccessStatusCode)

@@ -11,6 +11,7 @@ namespace HelpDesk.Domain.Entities
         public DateTime CreatedTime { get; set; }
         public DateTime ModifiedTime { get; set; }
         public int Status { get; set; }
+        public int Value { get; set; }
         List<TicketDocument> TicketDocuments { get; set; }
     }
 }

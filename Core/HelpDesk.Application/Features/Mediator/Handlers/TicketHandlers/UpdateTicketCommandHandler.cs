@@ -19,6 +19,7 @@ namespace HelpDesk.Application.Features.Mediator.Handlers.TicketHandlers
             values.CreatedTime = request.CreatedTime;
             values.ModifiedTime = request.ModifiedTime;
             values.Status = request.Status;
+            values.Value = request.Value;
             await _repository.UpdateAsync(values);
         }
     }

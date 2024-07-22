@@ -1,4 +1,6 @@
 ﻿
+using HelpDesk.Application.Enums;
+
 namespace HelpDesk.Application.Features.Mediator.Handlers.TicketHandlers
 {
     public class CreateTicketCommandHandler : IRequestHandler<CreateTicketCommand>
@@ -21,6 +23,7 @@ namespace HelpDesk.Application.Features.Mediator.Handlers.TicketHandlers
                 CreatedTime = request.CreatedTime,
                 ModifiedTime = request.ModifiedTime,
                 Status = request.Status,
+                Value = (int)ValueTypes.Waiting,
             });
         }
     }

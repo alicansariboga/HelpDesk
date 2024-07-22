@@ -26,6 +26,7 @@ namespace HelpDesk.Application.Features.Mediator.Handlers.TicketHandlers
                 CreatedTime = x.CreatedTime,
                 ModifiedTime = x.ModifiedTime,
                 Status = x.Status,
+                Value = x.Value
             }).ToList();
         }
     }

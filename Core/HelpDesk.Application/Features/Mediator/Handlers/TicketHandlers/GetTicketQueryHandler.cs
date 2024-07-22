@@ -21,6 +21,7 @@
                 CreatedTime = x.CreatedTime,
                 ModifiedTime = x.ModifiedTime,
                 Status = x.Status,
+                Value = x.Value,
             }).ToList();
         }
     }

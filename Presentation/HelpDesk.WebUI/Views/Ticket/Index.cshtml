@@ -53,6 +53,7 @@
                                     <th>Başlık</th>
                                     <th>Açıklama</th>
                                     <th>Tarih</th>
+                                    <th>Önemi</th>
                                     <th>Durumu</th>
                                 </tr>
                             </thead>
@@ -89,6 +90,19 @@
                                         {
                                             <td><span class="badge badge-danger">Çok Önemli</span></td>
                                         }
+                                        @if (item.Value == 0)
+                                        {
+                                            <td><span class="badge badge-light">Bekliyor</span></td>
+                                        }
+                                        @if (item.Value == 1)
+                                        {
+                                            <td><span class="badge badge-primary">Onaylandı</span></td>
+                                        }
+                                        @if (item.Value == 2)
+                                        {
+                                            <td><span class="badge badge-success">Reddedildi</span></td>
+                                        }
+
                                     </tr>
                                 }
                             </tbody>

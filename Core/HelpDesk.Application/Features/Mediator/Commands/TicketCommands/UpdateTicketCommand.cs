@@ -10,5 +10,6 @@
         public DateTime CreatedTime { get; set; }
         public DateTime ModifiedTime { get; set; }
         public int Status { get; set; }
+        public int Value { get; set; }
     }
 }
