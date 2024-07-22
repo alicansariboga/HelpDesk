@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Authorization;
 namespace HelpDesk.WebUI.Controllers
 {
     [AllowAnonymous]
-    [Route("Login")]
     public class LoginController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -23,13 +22,11 @@ namespace HelpDesk.WebUI.Controllers
             _httpClientFactory = httpClientFactory;
         }
         [HttpGet]
-        [Route("SignIn")]
         public IActionResult SignIn()
         {
             return View();
         }
         [HttpPost]
-        [Route("SignIn")]
         public async Task<IActionResult> SignIn(CreateLoginDto createLoginDto)
         {
             var client = _httpClientFactory.CreateClient();
@@ -73,13 +70,11 @@ namespace HelpDesk.WebUI.Controllers
             return View();
         }
         [HttpGet]
-        [Route("SignUp")]
         public IActionResult SignUp()
         {
             return View();
         }
         [HttpPost]
-        [Route("SignUp")]
         public async Task<IActionResult> SignUp(CreateRegisterDto createRegisterDto)
         {
             var client = _httpClientFactory.CreateClient();
@@ -93,7 +88,6 @@ namespace HelpDesk.WebUI.Controllers
             return View();
         }
         [HttpGet]
-        [Route("SignOut")]
         public async Task<IActionResult> SignOut()
         {
             await HttpContext.SignOutAsync(JwtBearerDefaults.AuthenticationScheme);
@@ -113,7 +107,6 @@ namespace HelpDesk.WebUI.Controllers
             return RedirectToAction("SignIn", "Login");
         }
         [HttpGet]
-        [Route("ForgotPassword")]
         public IActionResult ForgotPassword()
         {
             return View();
