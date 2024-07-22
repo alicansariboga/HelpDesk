@@ -70,11 +70,11 @@
                                         <td><a href="#">@item.Title</a></td>
                                         <td><a href="#">@msgShort</a></td>
                                         <td>@item.CreatedTime</td>
-                                        @if (item.Status == 1)
+                                        @if (item.Status == 5)
                                         {
                                             <td><span class="badge badge-light">Önemli Değil</span></td>
                                         }
-                                        @if (item.Status == 2)
+                                        @if (item.Status == 4)
                                         {
                                             <td><span class="badge badge-primary">Az Önemli</span></td>
                                         }
@@ -82,11 +82,11 @@
                                         {
                                             <td><span class="badge badge-success">Normal</span></td>
                                         }
-                                        @if (item.Status == 4)
+                                        @if (item.Status == 2)
                                         {
                                             <td><span class="badge badge-Warning">Önemli</span></td>
                                         }
-                                        @if (item.Status == 5)
+                                        @if (item.Status == 1)
                                         {
                                             <td><span class="badge badge-danger">Çok Önemli</span></td>
                                         }
