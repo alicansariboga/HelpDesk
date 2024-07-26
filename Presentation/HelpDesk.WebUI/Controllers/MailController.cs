@@ -1,47 +1,41 @@
 ﻿using HelpDesk.DTO.TicketDtos;
-using HelpDesk.DTO.TicketStatusDtos;
-using HelpDesk.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Security.Claims;
-using System.Text;
 
 namespace HelpDesk.WebUI.Controllers
 {
-    public class TicketController : Controller
+    public class MailController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public TicketController(IHttpClientFactory httpClientFactory)
+        public MailController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Inbox()
         {
+            var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7099/api/TicketStatuses/");
+            var responseMessage = await client.GetAsync($"https://localhost:7099/api/Tickets/TicketListByUserId?id=" + userId);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultTicketStatusDto>>(jsonData);
-                var createTicketViewModel = new CreateTicketViewModel
-                {
-                    resultTicketStatusDtos = values,
-                };
-                return View(createTicketViewModel);
+                var values = JsonConvert.DeserializeObject<List<ResultTicketDto>>(jsonData);
+                return View(values);
             }
             return View();
         }
-        [HttpPost]
-        public async Task<IActionResult> Create(CreateTicketViewModel createTicketViewModel)
+        public async Task<IActionResult> Outbox()
         {
+            var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createTicketViewModel.createTicketDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7099/api/Tickets/", stringContent);
+            var responseMessage = await client.GetAsync($"https://localhost:7099/api/Tickets/TicketListByUserId?id=" + userId);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Ticket");
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<List<ResultTicketDto>>(jsonData);
+                return View(values);
             }
             return View();
         }

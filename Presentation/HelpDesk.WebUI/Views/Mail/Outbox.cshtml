@@ -1,19 +1,20 @@
 ﻿@model List<ResultTicketDto>
 
 @{
-    ViewData["T nitle"] = "Index";
+    ViewData["Title"] = "Outbox";
     Layout = "~/Views/Layout/Index.cshtml";
     int count = 0;
 }
+
 <section class="content home">
     <div class="block-header">
         <div class="row">
             <div class="col-lg-7 col-md-6 col-sm-12">
                 <h2>
-                    Taleplerim
-                    <small class="text-muted">Welcome to Compass</small>
+                    Giden Kutusu
+                    <small class="text-muted">HelpDesk</small>
                 </h2>
-            </div>
+            </div>3
             <div class="col-lg-5 col-md-6 col-sm-12">
                 <ul class="breadcrumb float-md-right">
                     <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Ana Sayfa</a></li>
@@ -66,9 +67,9 @@
                                     count++;
                                     <tr>
                                         <td>@count</td>
-                                        <td><a href="#">@item.Id</a></td>
-                                        <td><a href="#">@item.Title</a></td>
-                                        <td><a href="#">@msgShort</a></td>
+                                        <td><a href="/Ticket/Detail/@item.Id">@item.Id</a></td>
+                                        <td><a href="/Ticket/Detail/@item.Id">@item.Title</a></td>
+                                        <td><a href="/Ticket/Detail/@item.Id">@msgShort</a></td>
                                         <td>@item.CreatedTime</td>
                                         @if (item.Status == 5)
                                         {
@@ -115,5 +116,4 @@
         <!-- #END# Hover Rows -->
     </div>
 </section>
-
 
