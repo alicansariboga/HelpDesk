@@ -4,6 +4,7 @@ using HelpDesk.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HelpDesk.Persistence.Migrations
 {
     [DbContext(typeof(HelpDeskContext))]
-    partial class HelpDeskContextModelSnapshot : ModelSnapshot
+    [Migration("20240730113939_mig_add_06_department")]
+    partial class mig_add_06_department
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -144,23 +147,6 @@ namespace HelpDesk.Persistence.Migrations
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("HelpDesk.Domain.Entities.Location", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Location");
-                });
-
             modelBuilder.Entity("HelpDesk.Domain.Entities.StaffDepartment", b =>
                 {
                     b.Property<int>("Id")
@@ -175,16 +161,11 @@ namespace HelpDesk.Persistence.Migrations
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("LocationId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
 
                     b.HasIndex("DepartmentId");
-
-                    b.HasIndex("LocationId");
 
                     b.ToTable("StaffDepartments");
                 });
@@ -343,17 +324,9 @@ namespace HelpDesk.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HelpDesk.Domain.Entities.Location", "Location")
-                        .WithMany("StaffDepartment")
-                        .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("AppUser");
 
                     b.Navigation("Department");
-
-                    b.Navigation("Location");
                 });
 
             modelBuilder.Entity("HelpDesk.Domain.Entities.TicketDocument", b =>
@@ -391,11 +364,6 @@ namespace HelpDesk.Persistence.Migrations
                 });
 
             modelBuilder.Entity("HelpDesk.Domain.Entities.Department", b =>
-                {
-                    b.Navigation("StaffDepartment");
-                });
-
-            modelBuilder.Entity("HelpDesk.Domain.Entities.Location", b =>
                 {
                     b.Navigation("StaffDepartment");
                 });

@@ -15,6 +15,8 @@
         public DbSet<TicketDocument> TicketDocuments { get; set; }
         public DbSet<TicketRoute> TicketRoutes { get; set; }
         public DbSet<TicketStatus> TicketStatuses { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<StaffDepartment> StaffDepartments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

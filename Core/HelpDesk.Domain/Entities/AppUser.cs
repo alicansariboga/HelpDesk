@@ -18,5 +18,6 @@ namespace HelpDesk.Domain.Entities
         public bool TwoFactorEnabled { get; set; }
         public int FailedLoginCount { get; set; }
         public List<AppUserRole> AppUserRoles { get; set; }
+        public List<StaffDepartment> StaffDepartment { get; set; }
     }
 }
