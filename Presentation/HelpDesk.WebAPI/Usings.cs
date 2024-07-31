@@ -20,3 +20,5 @@ global using HelpDesk.Application.Features.Mediator.Queries.TicketRouteQueries;
 
 global using HelpDesk.Application.Features.Mediator.Commands.AppUserCommands;
 global using HelpDesk.Application.Features.Mediator.Queries.AppUserQueries;
+
+global using HelpDesk.Application.Features.Mediator.Queries.StaffDepartmentQueries;
