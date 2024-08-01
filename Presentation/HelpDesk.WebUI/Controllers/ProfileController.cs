@@ -1,4 +1,4 @@
-﻿using HelpDesk.DTO.AppUserDtos;
+﻿using HelpDesk.DTO.StaffDepartmentDtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -22,11 +22,11 @@ namespace HelpDesk.WebUI.Controllers
         {
             var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7099/api/AppUsers/" + userId);
+            var responseMessage = await client.GetAsync($"https://localhost:7099/api/StaffDepartments/StaffDepartmentListByUserId?id=" + userId);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<ResultAppUserDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<ResultStaffDepartmentAllDto>(jsonData);
                 return View(values);
             }
             return View();

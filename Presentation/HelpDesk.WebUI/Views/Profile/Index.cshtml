@@ -1,4 +1,4 @@
-﻿@model ResultAppUserDto
+﻿@model ResultStaffDepartmentAllDto
 
 @{
     ViewData["Title"] = "Index";
@@ -34,7 +34,7 @@
                     </div>
                     <div class="member-img">
                         <a href="profile.html" class="">
-                            <img src="~/images/profile_av.jpg" class="rounded-circle" alt="profile-image">
+                            <img src="@Model.ImageUrl" class="rounded-circle" alt="profile-image">
                         </a>
                     </div>
                     <div class="body">
@@ -44,7 +44,7 @@
                                 <li><a title="twitter" href="#"><i class="zmdi zmdi-twitter"></i></a></li>
                                 <li><a title="instagram" href="#"><i class="zmdi zmdi-instagram"></i></a></li>
                             </ul>
-                            <p class="text-muted">795 Folsom Ave, Suite 600 San Francisco, CADGE 94107</p>
+                            <p class="text-muted">Dedeman Madencilik, Delikkaya Çinko Kurşun İşletmesi, 38500, Yahyalı/ KAYSERİ</p>
                         </div>
                         <hr>
                         <div class="row">
@@ -65,16 +65,19 @@
                 </div>
                 <div class="card">
                     <ul class="nav nav-tabs">
-                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#friends">Friends</a></li>
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#about">Hakkımda</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#friends">Takımım</a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane body active" id="about">
-                            <small class="text-muted">Email address: </small>
-                            <p>michael@gmail.com</p>
+                            <small class="text-muted">Departman: </small>
+                            <p>@Model.DepartmentName</p>
                             <hr>
-                            <small class="text-muted">Phone: </small>
-                            <p>+ 202-555-0191</p>
+                            <small class="text-muted">Email adresi: </small>
+                            <p>@Model.Email</p>
+                            <hr>
+                            <small class="text-muted">Telefon: </small>
+                            <p>+90 @Model.PhoneNumber</p>
                             <hr>
                             <ul class="list-unstyled">
                                 <li>

@@ -62,7 +62,7 @@ namespace HelpDesk.WebUI.Controllers
                     }
                     if(userRole == "Admin")
                     {
-                        return View();
+                        return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
                     }
                     
                 }

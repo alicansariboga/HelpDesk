@@ -1,11 +1,13 @@
-﻿<aside id="leftsidebar" class="sidebar">
+﻿@model ResultAppUserDto
+
+<aside id="leftsidebar" class="sidebar">
     <div class="menu">
         <ul class="list">
             <li>
                 <div class="user-info">
-                    <div class="image"><a href="profile.html"><img src="~/images/profile_av.jpg" alt="User"></a></div>
+                    <div class="image"><a href="profile.html"><img src="@Model.ImageUrl" alt="User"></a></div>
                     <div class="detail">
-                        <h4>Ali Can SARIBOĞA</h4>
+                        <h4>@Model.Name @Model.Surname</h4>
                         <small>Software Developer</small>
                     </div>
                     <a href="#" title="Olaylar"><i class="zmdi zmdi-calendar"></i></a>
