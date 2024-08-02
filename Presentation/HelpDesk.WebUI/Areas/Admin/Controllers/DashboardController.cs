@@ -6,15 +6,8 @@ namespace HelpDesk.WebUI.Areas.Admin.Controllers
     [Route("Admin/Dashboard")]
     public class DashboardController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
-        public DashboardController(IHttpClientFactory httpClientFactory)
-        {
-            _httpClientFactory = httpClientFactory;
-        }
-
-        [HttpGet]
         [Route("Index")]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View();
         }

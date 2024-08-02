@@ -1,7 +1,7 @@
-﻿@model List<ResultTicketDto>
+﻿@model ResultTicketDto
 
 @{
-    ViewData["Title"] = "Outbox";
+    ViewData["Title"] = "Detail";
     Layout = "~/Views/Layout/Index.cshtml";
 }
 
@@ -10,14 +10,15 @@
         <div class="row">
             <div class="col-lg-7 col-md-6 col-sm-12">
                 <h2>
-                    Giden Kutusu
+                    Maili Görüntüle
                     <small class="text-muted">HelpDesk</small>
                 </h2>
             </div>
             <div class="col-lg-5 col-md-6 col-sm-12">
                 <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="/Dashboard/Index"><i class="zmdi zmdi-home"></i> HelpDesk</a></li>
-                    <li class="breadcrumb-item active">Gelen Kutusu</li>
+                    <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> HelpDesk</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Giden Kutusu</a></li>
+                    <li class="breadcrumb-item active">Görüntüle</li>
                 </ul>
             </div>
         </div>
@@ -103,49 +104,54 @@
             </div>
         </div>
         <div class="row clearfix">
-            <div class="col-md-12 col-lg-12 col-xl-12">
-                <ul class="mail_list list-group list-unstyled">
-                    @foreach (var item in Model)
-                    {
-                        var theMessage = string.Join(" ", item.Message.Split(' ').Take(15));
-                        var msgShort = theMessage + (item.Message.Split(' ').Length > 15 ? "..." : "");
-
-                        <li class="list-group-item">
-                            <div class="media">
-                                <div class="pull-left">
-                                    <div class="controls">
-                                        <div class="checkbox">
-                                            <input type="checkbox" id="basic_checkbox_1">
-                                            <label for="basic_checkbox_1"></label>
-                                        </div>
-                                        <a href="javascript:void(0);" class="favourite text -muted hidden-sm-down" data-toggle="active"><i class="zmdi zmdi-star-outline"></i></a>
-                                    </div>
-                                </div>
-                                <div class="media-body">
-                                    <div class="media-heading">
-                                        <a href="/Mail/Outbox/Detail/@item.Id" class="m-r-10">@item.Title</a>
-                                        <span class="badge bg-blue">@item.Receiver</span>
-                                        <small class="float-right text-muted"><time class="hidden-sm-down" datetime="@item.CreatedTime.ToString("yyyy")">@item.CreatedTime.ToString("hh:MM")</time></small>
-                                    </div>
-                                    <p class="msg">@msgShort </p>
-                                </div>
-                            </div>
-                        </li>
-                    }
-                </ul>
-                <div class="card m-t-5">
+            <div class="col-lg-12">
+                <div class="card">
                     <div class="body">
-                        <ul class="pagination pagination-primary m-b-0">
-                            <li class="page-item"><a class="page-link" href="#">Önceki</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Sonraki</a></li>
-                        </ul>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="m-t-0 m-b-20">@Model.Title</h4>
+                                <hr>
+                                <div class="media">
+                                    <div class="float-left">
+                                        <div class="m-r-20"> <img class="rounded" src="~/images/xs/avatar7.jpg" width="60" alt=""> </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="m-b-0">
+                                            <strong class="text-muted m-r-5">Kimden:</strong>Ben
+                                            <a href="javascript:void(0);" class="text-default"> (@Model.Sender)</a>
+                                            @{
+                                                var datePart = Model.CreatedTime.ToString("yyyy-MM-dd");
+                                                var timePart = Model.CreatedTime.ToString("HH:mm:ss");
+                                            }
+                                            <span class="text-muted text-sm float-right">@timePart, @datePart</span>
+                                        </p>
+                                        <p class="m-b-0">
+                                            <strong class="text-muted m-r-10">Kime:</strong>@Model.Receiver
+                                            <small class="text-muted float-right"><i class="zmdi zmdi-attachment m-r-5"></i>(2 files, 89.2 KB)</small>
+                                        </p>
+                                        <p class="m-b-0">
+                                            <strong class="text-muted m-r-10">CC:</strong><a href="javascript:void(0);">@Model.Receiver</a>, <a href="javascript:void(0);">@Model.Receiver</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-md-12">
+                                <p>@Model.Message</p>
+                            </div>
+                            <div class="col-md-12">
+                                <span><img src="~/images/image2.jpg" class="img-thumbnail m-t-10" width="250" alt=""></span>
+                                <span><img src="~/images/image3.jpg" class="img-thumbnail m-t-10" width="250" alt=""></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="body">
+                        <strong>Buradan</strong> <a href="#">Cevapla</a> veya <a href="#">İlet</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-

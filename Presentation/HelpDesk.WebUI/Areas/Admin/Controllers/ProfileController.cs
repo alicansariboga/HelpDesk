@@ -1,21 +1,25 @@
-﻿using HelpDesk.DTO.AppUserDtos;
-using HelpDesk.DTO.StaffDepartmentDtos;
+﻿using HelpDesk.DTO.StaffDepartmentDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Security.Claims;
 
-namespace HelpDesk.WebUI.ViewComponents.LayoutAdminViewComponents
+namespace HelpDesk.WebUI.Areas.Admin.Controllers
 {
-    public class _LayoutAdminLeftSiderbarComponentPartial : ViewComponent
+    [Area("Admin")]
+    [Route("Admin/Profile")]
+    public class ProfileController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
-
-        public _LayoutAdminLeftSiderbarComponentPartial(IHttpClientFactory httpClientFactory)
+        public ProfileController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
-        public async Task<IViewComponentResult> InvokeAsync(string id)
+
+        [HttpGet]
+        [Route("Index")]
+        public async Task<IActionResult> Index()
         {
-            int userId = Convert.ToInt32(id);
+            var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync($"https://localhost:7099/api/StaffDepartments/StaffDepartmentListByUserId?id=" + userId);
             if (responseMessage.IsSuccessStatusCode)

@@ -29,3 +29,7 @@ global using HelpDesk.Application.Features.Mediator.Commands.TicketStatusCommand
 global using HelpDesk.Application.Features.Mediator.Results.AppUserResults;
 global using HelpDesk.Application.Features.Mediator.Queries.AppUserQueries;
 global using HelpDesk.Application.Features.Mediator.Commands.AppUserCommands;
+
+global using HelpDesk.Application.Features.Mediator.Results.MailResults;
+global using HelpDesk.Application.Features.Mediator.Queries.MailQueries;
+global using HelpDesk.Application.Features.Mediator.Commands.MailCommands;

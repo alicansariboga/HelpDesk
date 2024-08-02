@@ -6,7 +6,9 @@ namespace HelpDesk.Domain.Entities
     {
         public string File { get; set; }
         public string CreatedDate { get; set; }
-        public int TicketId { get; set; }
+        public int? TicketId { get; set; }
         public Ticket Ticket { get; set; }
+        public int? MailId { get; set; }
+        public Mail Mail { get; set; }
     }
 }

@@ -1,8 +1,10 @@
 using HelpDesk.Application.Interfaces.AppUserInterfaces;
+using HelpDesk.Application.Interfaces.MailInterfaces;
 using HelpDesk.Application.Interfaces.StaffDepartmentInterfaces;
 using HelpDesk.Application.Interfaces.TicketInterfaces;
 using HelpDesk.Application.Tools;
 using HelpDesk.Persistence.Repositories.AppUserRepositories;
+using HelpDesk.Persistence.Repositories.MailRepositories;
 using HelpDesk.Persistence.Repositories.StaffDepartmentRepositories;
 using HelpDesk.Persistence.Repositories.TicketRepositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -36,6 +38,7 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IAppUserRepository), typeof(AppUserRepository));
 builder.Services.AddScoped(typeof(ITicketRepository), typeof(TicketRepository));
 builder.Services.AddScoped(typeof(IStaffDepartmentRepository), typeof(StaffDepartmentRepository));
+builder.Services.AddScoped(typeof(IMailRepository), typeof(MailRepository));
 #endregion
 
 // ServiceRegistration

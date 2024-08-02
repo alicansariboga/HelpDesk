@@ -22,3 +22,6 @@ global using HelpDesk.Application.Features.Mediator.Commands.AppUserCommands;
 global using HelpDesk.Application.Features.Mediator.Queries.AppUserQueries;
 
 global using HelpDesk.Application.Features.Mediator.Queries.StaffDepartmentQueries;
+
+global using HelpDesk.Application.Features.Mediator.Commands.MailCommands;
+global using HelpDesk.Application.Features.Mediator.Queries.MailQueries;

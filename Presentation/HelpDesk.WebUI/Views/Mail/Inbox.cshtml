@@ -1,4 +1,4 @@
-﻿@model List<ResultTicketDto>
+﻿@model List<ResulltMailDto>
 
 @{
     ViewData["Title"] = "Inbox";
@@ -10,8 +10,8 @@
         <div class="row">
             <div class="col-lg-7 col-md-6 col-sm-12">
                 <h2>
-                    Inbox
-                    <small class="text-muted">Welcome to Compass</small>
+                    Gelen Kutusu
+                    <small class="text-muted">HelpDesk</small>
                 </h2>
             </div>
             <div class="col-lg-5 col-md-6 col-sm-12">
@@ -32,13 +32,13 @@
                                 <div class="checkbox inlineblock delete_all">
                                     <input id="deleteall" type="checkbox">
                                     <label for="deleteall">
-                                        All
+                                        Hepsi
                                     </label>
                                 </div>
                             </div>
                             <div class="col-lg-5 col-md-4 col-6">
                                 <div class="input-group search">
-                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <input type="text" class="form-control" placeholder="Arama...">
                                     <span class="input-group-addon">
                                         <i class="zmdi zmdi-search"></i>
                                     </span>
@@ -53,17 +53,17 @@
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-right slideDown">
                                             <li>
-                                                <a href="javascript:void(0);">Family</a>
+                                                <a href="javascript:void(0);">Aile</a>
                                             </li>
                                             <li>
-                                                <a href="javascript:void(0);">Work</a>
+                                                <a href="javascript:void(0);">İş</a>
                                             </li>
                                             <li>
                                                 <a href="javascript:void(0);">Google</a>
                                             </li>
                                             <li role="separator" class="divider"></li>
                                             <li>
-                                                <a href="javascript:void(0);">Create a Label</a>
+                                                <a href="javascript:void(0);">Etiket Oluştur</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -71,21 +71,20 @@
                                 <div class="btn-group hidden-md-down hidden-sm-down">
                                     <button type="button" class="btn btn-simple btn-info dropdown-toggle btn-round" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-folder"></i> <span class="caret"></span> </button>
                                     <ul class="dropdown-menu dropdown-menu-right slideDown">
-                                        <li><a href="javascript:void(0);">Important</a></li>
-                                        <li><a href="javascript:void(0);">Social</a></li>
-                                        <li><a href="javascript:void(0);">Bank Statements</a></li>
+                                        <li><a href="javascript:void(0);">Önemli</a></li>
+                                        <li><a href="javascript:void(0);">Sosyal</a></li>
+                                        <li><a href="javascript:void(0);">Banka İşlemleri</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="javascript:void(0);">Create a folder</a></li>
+                                        <li><a href="javascript:void(0);">Klasör Oluştur</a></li>
                                     </ul>
                                 </div>
                                 <div class="btn-group hidden-sm-down">
-                                    <button type="button" class="btn btn-simple btn-warning dropdown-toggle btn-round" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More<span class="caret"></span> </button>
+                                    <button type="button" class="btn btn-simple btn-warning dropdown-toggle btn-round" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Daha Fazlası<span class="caret"></span> </button>
                                     <ul class="dropdown-menu dropdown-menu-right slideDown">
-                                        <li><a href="javascript:void(0);">Unread</a></li>
-                                        <li><a href="javascript:void(0);">Unimportant</a></li>
-                                        <li><a href="javascript:void(0);">Add star</a></li>
+                                        <li><a href="javascript:void(0);">Okunmamış</a></li>
+                                        <li><a href="javascript:void(0);">Gereksiz</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="javascript:void(0);">Mute</a></li>
+                                        <li><a href="javascript:void(0);">Sessize Al</a></li>
                                     </ul>
                                 </div>
                                 <button type="button" class="btn btn-success btn-icon btn-icon-mini btn-round hidden-sm-down">
@@ -124,7 +123,7 @@
                                 </div>
                                 <div class="media-body">
                                     <div class="media-heading">
-                                        <a href="/Mail/Detail/@item.Id" class="m-r-10">@item.Title</a>
+                                        <a href="/Mail/Inbox/Detail/@item.Id" class="m-r-10">@item.Title</a>
                                         <span class="badge bg-blue">@item.Receiver</span>
                                         <small class="float-right text-muted"><time class="hidden-sm-down" datetime="@item.CreatedTime.ToString("yyyy")">@item.CreatedTime.ToString("hh:MM")</time></small>
                                     </div>

@@ -1,13 +1,15 @@
-﻿<aside id="leftsidebar" class="sidebar">
+﻿@model ResultStaffDepartmentAllDto
+
+<aside id="leftsidebar" class="sidebar">
     <!-- Menu -->
     <div class="menu">
         <ul class="list">
             <li>
                 <div class="user-info">
-                    <div class="image"><a href="/Profile/Index/"><img src="~/images/profile_av.jpg" alt="User"></a></div>
+                    <div class="image"><a href="/Profile/Index/"><img src="@Model.ImageUrl" alt="User"></a></div>
                     <div class="detail">
-                        <h4>Ali Can SARIBOĞA</h4>
-                        <small>Software Developer</small>
+                        <h4>@Model.Name @Model.Surname</h4>
+                        <small>@Model.DepartmentName Birimi</small>
                     </div>
                     <a href="#" title="Events"><i class="zmdi zmdi-calendar"></i></a>
                     <a href="/Mail/Inbox" title="Inbox"><i class="zmdi zmdi-email"></i></a>
@@ -17,7 +19,7 @@
                 </div> 
             </li>
             <li class="header">MAIN NAVIGATION</li>
-            <li class="active open"> <a href="/Dashboard/Index"><i class="zmdi zmdi-home"></i><span>Home</span> </a> </li>
+            <li class="active open"> <a href="/Dashboard/Index"><i class="zmdi zmdi-home"></i><span>Ana Sayfa</span> </a> </li>
             <li> <a href="/Ticket/Create/"><i class="zmdi zmdi-plus-circle"></i><span>Talep Oluştur</span> </a></li>
             
 
