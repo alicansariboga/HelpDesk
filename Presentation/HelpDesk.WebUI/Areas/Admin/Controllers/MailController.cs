@@ -1,6 +1,7 @@
 ﻿using HelpDesk.DTO.AppUserDtos;
 using HelpDesk.DTO.MailDtos;
 using HelpDesk.DTO.TicketDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Security.Claims;
@@ -8,6 +9,7 @@ using System.Text;
 
 namespace HelpDesk.WebUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     [Route("Admin/Mail")]
     public class MailController : Controller

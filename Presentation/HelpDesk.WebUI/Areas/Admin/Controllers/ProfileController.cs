@@ -1,10 +1,12 @@
 ﻿using HelpDesk.DTO.StaffDepartmentDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Security.Claims;
 
 namespace HelpDesk.WebUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     [Route("Admin/Profile")]
     public class ProfileController : Controller

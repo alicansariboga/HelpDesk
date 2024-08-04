@@ -11,7 +11,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCo
 {
     opt.LoginPath = "/Login/SignIn/";
     opt.LogoutPath = "/Login/SignOut/";
-    //opt.AccessDeniedPath = "/Pages/Error403/";
+    opt.AccessDeniedPath = "/Error/Err401/";
     opt.Cookie.SameSite = SameSiteMode.Strict;
     opt.Cookie.HttpOnly = true;
     opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
@@ -23,7 +23,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Error/Err500");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
@@ -32,7 +32,7 @@ if (!app.Environment.IsDevelopment())
 app.UseCors("AllowSpecificOrigin");
 
 //404 error
-app.UseStatusCodePagesWithReExecute("/Pages/Error404", "?code={0}");
+app.UseStatusCodePagesWithReExecute("/Error/Err404", "?code={0}");
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
