@@ -24,13 +24,12 @@ namespace HelpDesk.WebUI.Areas.Admin.Controllers
         [Route("Inbox")]
         public async Task<IActionResult> Inbox()
         {
-            var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7099/api/Mails/MailListByUserId?id=" + userId);
+            var responseMessage = await client.GetAsync("https://localhost:7099/api/Tickets");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResulltMailDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultTicketDto>>(jsonData);
                 return View(values);
             }
             return View();
@@ -39,13 +38,12 @@ namespace HelpDesk.WebUI.Areas.Admin.Controllers
         [Route("Outbox")]
         public async Task<IActionResult> Outbox()
         {
-            var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7099/api/Tickets/TicketListByUserId?id=" + userId);
+            var responseMessage = await client.GetAsync("https://localhost:7099/api/Mails");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultTicketDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResulltMailDto>>(jsonData);
                 return View(values);
             }
             return View();

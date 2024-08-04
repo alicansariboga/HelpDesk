@@ -19,5 +19,12 @@ namespace HelpDesk.Persistence.Repositories.MailRepositories
             var value = _context.Mails.Where(x => x.Receiver == userMail).ToList();
             return value;
         }
+        public List<Mail> GetMailAdminByUserId(int id)
+        {
+            var user = _context.AppUsers.Where(x => x.Id == id).FirstOrDefault();
+            var userMail = user.Email;
+            var value = _context.Mails.Where(x => x.Sender == userMail).ToList();
+            return value;
+        }
     }
 }

@@ -31,6 +31,12 @@ namespace HelpDesk.WebAPI.Controllers
             var values = await _mediator.Send(new GetMailByUserIdQuery(id));
             return Ok(values);
         }
+        [HttpGet("MailListAdminByUserId")]
+        public async Task<IActionResult> MailListAdminByUserId(int id)
+        {
+            var values = await _mediator.Send(new GetMailAdminByUserIdQuery(id));
+            return Ok(values);
+        }
         [HttpPost]
         public async Task<IActionResult> CreateMail(CreateMailCommand command)
         {
