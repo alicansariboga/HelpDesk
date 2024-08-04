@@ -26,7 +26,7 @@ namespace HelpDesk.WebUI.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<ResultStaffDepartmentAllDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<ResultStaffDepartmentByUserIdDto>(jsonData);
                 return View(values);
             }
             return View();

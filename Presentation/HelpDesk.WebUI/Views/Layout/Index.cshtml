@@ -1,5 +1,7 @@
-﻿@{
+﻿@using System.Security.Claims
+@{
     Layout = null;
+    var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
 }
 
 <!DOCTYPE html>
@@ -20,7 +22,7 @@
     @await Component.InvokeAsync("_LayoutNavbarComponentPartial")
 
     <!-- Left Sidebar -->
-    @await Component.InvokeAsync("_LayoutLeftSidebarComponentPartial")
+    @await Component.InvokeAsync("_LayoutLeftSidebarComponentPartial", new { id = userId })
 
     <!-- Right Sidebar -->
     @await Component.InvokeAsync("_LayoutRightSidebarComponentPartial")

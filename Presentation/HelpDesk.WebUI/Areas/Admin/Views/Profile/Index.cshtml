@@ -1,4 +1,4 @@
-﻿@model ResultStaffDepartmentAllDto
+﻿@model ResultStaffDepartmentByUserIdDto
 
 @{
     ViewData["Title"] = "Index";
@@ -10,8 +10,8 @@
         <div class="row">
             <div class="col-lg-7 col-md-6 col-sm-12">
                 <h2>
-                    Profile
-                    <small class="text-muted">Welcome to Compass</small>
+                    Profil Bölümü
+                    <small class="text-muted">HelpDesk</small>
                 </h2>
             </div>
             <div class="col-lg-5 col-md-6 col-sm-12">
@@ -19,7 +19,7 @@
                     <i class="zmdi zmdi-plus"></i>
                 </button>
                 <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Compass</a></li>
+                    <li class="breadcrumb-item"><a href="/Admin/Dashboard/Index"><i class="zmdi zmdi-home"></i> HelpDesk</a></li>
                     <li class="breadcrumb-item active">Profile</li>
                 </ul>
             </div>
@@ -44,7 +44,7 @@
                                 <li><a title="twitter" href="#"><i class="zmdi zmdi-twitter"></i></a></li>
                                 <li><a title="instagram" href="#"><i class="zmdi zmdi-instagram"></i></a></li>
                             </ul>
-                            <p class="text-muted">Dedeman Madencilik, Delikkaya Çinko Kurşun İşletmesi, 38500, Yahyalı/ KAYSERİ</p>
+                            <p class="text-muted">@Model.LocationAddress</p>
                         </div>
                         <hr>
                         <div class="row">

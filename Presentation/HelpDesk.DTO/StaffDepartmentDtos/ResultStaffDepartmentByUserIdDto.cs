@@ -1,9 +1,9 @@
-﻿namespace HelpDesk.Application.Features.Mediator.Results.StaffDepartmentResults
+﻿namespace HelpDesk.DTO.StaffDepartmentDtos
 {
-    public class GetStaffDepartmentByUserIdQueryResult
+    public class ResultStaffDepartmentByUserIdDto
     {
-        public int Id { get; set; }
         public int AppUserId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string ImageUrl { get; set; }

@@ -25,7 +25,7 @@ namespace HelpDesk.Application.Features.Mediator.Handlers.GetStaffDepartmentQuer
                 LocationName = x.Location.Name,
                 AppUserId = x.AppUserId,
                 Name = x.AppUser.Name,
-                Surname = x.AppUser.Name,
+                Surname = x.AppUser.Surname,
                 ImageUrl = x.AppUser.ImageUrl,
                 UserName = x.AppUser.UserName,
                 Email = x.AppUser.Email,

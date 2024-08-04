@@ -1,5 +1,4 @@
-﻿using HelpDesk.DTO.AppUserDtos;
-using HelpDesk.DTO.StaffDepartmentDtos;
+﻿using HelpDesk.DTO.StaffDepartmentDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http;

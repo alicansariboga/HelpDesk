@@ -1,4 +1,4 @@
-﻿@model ResultStaffDepartmentAllDto
+﻿@model ResultStaffDepartmentByUserIdDto
 
 @{
     ViewData["Title"] = "Index";
@@ -44,7 +44,7 @@
                                 <li><a title="twitter" href="#"><i class="zmdi zmdi-twitter"></i></a></li>
                                 <li><a title="instagram" href="#"><i class="zmdi zmdi-instagram"></i></a></li>
                             </ul>
-                            <p class="text-muted">Dedeman Madencilik, Delikkaya Çinko Kurşun İşletmesi, 38500, Yahyalı/ KAYSERİ</p>
+                            <p class="text-muted">@Model.LocationAddress</p>
                         </div>
                         <hr>
                         <div class="row">
