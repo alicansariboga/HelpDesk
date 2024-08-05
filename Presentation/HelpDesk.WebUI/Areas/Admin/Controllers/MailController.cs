@@ -38,8 +38,9 @@ namespace HelpDesk.WebUI.Areas.Admin.Controllers
         [Route("Outbox")]
         public async Task<IActionResult> Outbox()
         {
+            var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7099/api/Mails");
+            var responseMessage = await client.GetAsync($"https://localhost:7099/api/Mails/MailListAdminByUserId?id=" + userId);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -49,11 +50,11 @@ namespace HelpDesk.WebUI.Areas.Admin.Controllers
             return View();
         }
         [HttpGet]
-        [Route("Admin/Mail/Inbox/Detail/{id}")]
+        [Route("Inbox/Detail/{id}")]
         public async Task<IActionResult> InboxDetail(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7099/api/Mails/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7099/api/Tickets/{id}");
 
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -64,12 +65,11 @@ namespace HelpDesk.WebUI.Areas.Admin.Controllers
             return View("Error");
         }
         [HttpGet]
-        [Route("Admin/Mail/Outbox/Detail/{id}")]
+        [Route("Outbox/Detail/{id}")]
         public async Task<IActionResult> OutboxDetail(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7099/api/Tickets/{id}");
-
+            var responseMessage = await client.GetAsync($"https://localhost:7099/api/Mails/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();

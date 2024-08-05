@@ -1,67 +1,70 @@
 ﻿@model CreateTicketViewModel
 
 @{
-    ViewData["Title"] = "Create";
-    Layout = "~/Views/Layout/Index.cshtml";
+	ViewData["Title"] = "Create";
+	Layout = "~/Views/Layout/Index.cshtml";
 }
 
 <section class="content home">
-    <div class="row clearfix">
-        <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="card">
-                <div class="header">
-                    <h2><strong>Yeni</strong> Talep Oluştur</h2>
-                    <ul class="header-dropdown">
-                        <li class="dropdown">
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
-                        </li>
-                        <li class="remove">
-                            <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="body">
-                    <form id="form_validation" method="POST">
-                        <div class="form-group">
-                            <select class="form-control show-tick" asp-for="createTicketDto.Receiver">
-                                <option value="">-- Departman Seçiniz --</option>
-                                <option value="test4@test.com">Test 4</option>
-                                <option value="test3@test.com">Test 3</option>
-                                <option value="test2@test.com">Test 2</option>
-                                <option value="test1@test.com">Test 1</option>
-                            </select>
-                        </div>
-                        <div class="form-group form-float">
-                            <input type="text" class="form-control" asp-for="createTicketDto.Title" placeholder="Başlık" required>
-                        </div>
-                        <div class="form-group form-float">
-                            <textarea cols="30" rows="6" asp-for="createTicketDto.Message" placeholder="Talebiniz" class="form-control no-resize" required></textarea>
-                        </div>
-                        <div class="form-group form-float">
-                            <input type="email" class="form-control" asp-for="createTicketDto.Sender" placeholder="Email" required>
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control show-tick" asp-for="createTicketDto.Status">
-                                <option value="">-- Talep Önemini Seçiniz --</option>
-                                @foreach(var item in Model.resultTicketStatusDtos)
-                                {
-                                    <option value="@item.Id">@item.Name</option>
-                                }
-                            </select>
-                        </div>
-                        <input type="hidden" class="form-control" asp-for="createTicketDto.CreatedTime" value="@DateTime.Now" />
-                        <input type="hidden" class="form-control" asp-for="createTicketDto.ModifiedTime" value="@DateTime.Now" />
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <input id="checkbox" type="checkbox">
-                                <label for="checkbox">Koşullar &amp; Şartları okudum ve kabul ediyorum.</label>
-                            </div>
-                        </div>
-                        <button class="btn btn-raised btn-primary btn-round waves-effect" type="submit">Gönder</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
+	<div class="row clearfix">
+		<div class="col-lg-12 col-md-12 col-sm-12">
+			<div class="card">
+				<div class="header">
+					<h2><strong>Yeni</strong> Talep Oluştur</h2>
+					<ul class="header-dropdown">
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
+						</li>
+						<li class="remove">
+							<a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+						</li>
+					</ul>
+				</div>
+				<div class="body">
+					<form id="form_validation" method="POST">
+						<div class="form-group">
+							<select class="form-control show-tick" asp-for="createTicketDto.Receiver">
+								<option value="">-- Departman Seçiniz --</option>
+								@foreach (var item in Model.resultStaffDepartmentAllDtos)
+								{
+									if (item.DepartmentId == 8 || item.DepartmentName == "Bilgi İşlem")
+									{
+										<option value="@item.Email">@item.DepartmentName - @item.Email</option>
+									}
+								}
+							</select>
+						</div>
+						<div class="form-group form-float">
+							<input type="text" class="form-control" asp-for="createTicketDto.Title" placeholder="Başlık" required>
+						</div>
+						<div class="form-group form-float">
+							<textarea cols="30" rows="6" asp-for="createTicketDto.Message" placeholder="Talebiniz" class="form-control no-resize" required></textarea>
+						</div>
+						<div class="form-group form-float">
+							<input type="email" class="form-control" asp-for="createTicketDto.Sender" value="@ViewBag.userMail" placeholder="Email" required>
+						</div>
+						<div class="form-group">
+							<select class="form-control show-tick" asp-for="createTicketDto.Status">
+								<option value="">-- Talep Önemini Seçiniz --</option>
+								@foreach (var item in Model.resultTicketStatusDtos)
+								{
+									<option value="@item.Id">@item.Name</option>
+								}
+							</select>
+						</div>
+						<input type="hidden" class="form-control" asp-for="createTicketDto.CreatedTime" value="@DateTime.Now" />
+						<input type="hidden" class="form-control" asp-for="createTicketDto.ModifiedTime" value="@DateTime.Now" />
+						<div class="form-group">
+							<div class="checkbox">
+								<input id="checkbox" type="checkbox">
+								<label for="checkbox">Koşullar &amp; Şartları okudum ve kabul ediyorum.</label>
+							</div>
+						</div>
+						<button class="btn btn-raised btn-primary btn-round waves-effect" type="submit">Gönder</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
 </section>

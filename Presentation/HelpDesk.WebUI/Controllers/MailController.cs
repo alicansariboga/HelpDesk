@@ -31,11 +31,11 @@ namespace HelpDesk.WebUI.Controllers
         {
             var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7099/api/Mails/MailListByUserId?id=" + userId);
+            var responseMessage = await client.GetAsync($"https://localhost:7099/api/Tickets/TicketListByUserId?id=" + userId);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResulltMailDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultTicketDto>>(jsonData);
                 return View(values);
             }
             return View();

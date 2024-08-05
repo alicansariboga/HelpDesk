@@ -1,4 +1,6 @@
-﻿using HelpDesk.DTO.TicketDtos;
+﻿using HelpDesk.DTO.AppUserDtos;
+using HelpDesk.DTO.StaffDepartmentDtos;
+using HelpDesk.DTO.TicketDtos;
 using HelpDesk.DTO.TicketStatusDtos;
 using HelpDesk.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -18,15 +20,24 @@ namespace HelpDesk.WebUI.Controllers
         }
         public async Task<IActionResult> Create()
         {
-            var client = _httpClientFactory.CreateClient();
+			var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+			var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7099/api/TicketStatuses/");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<List<ResultTicketStatusDto>>(jsonData);
-                var createTicketViewModel = new CreateTicketViewModel
+                var responseMessage2 = await client.GetAsync("https://localhost:7099/api/StaffDepartments/StaffDepartmentList/");
+                var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
+                var values2 = JsonConvert.DeserializeObject<List<ResultStaffDepartmentAllDto>>(jsonData2);
+				var responseMessage3 = await client.GetAsync($"https://localhost:7099/api/AppUsers/{userId}");
+				var jsonData3 = await responseMessage3.Content.ReadAsStringAsync();
+				var values3 = JsonConvert.DeserializeObject<ResultAppUserDto>(jsonData3);
+                ViewBag.userMail = values3.Email;
+				var createTicketViewModel = new CreateTicketViewModel
                 {
                     resultTicketStatusDtos = values,
+                    resultStaffDepartmentAllDtos = values2,
                 };
                 return View(createTicketViewModel);
             }
@@ -41,7 +52,7 @@ namespace HelpDesk.WebUI.Controllers
             var responseMessage = await client.PostAsync("https://localhost:7099/api/Tickets/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Ticket");
+                return RedirectToAction("Outbox", "Mail");
             }
             return View();
         }
