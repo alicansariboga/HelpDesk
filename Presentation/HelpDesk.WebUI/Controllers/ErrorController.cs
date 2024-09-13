@@ -17,11 +17,6 @@ namespace HelpDesk.WebUI.Controllers
         {
             return View();
         }
-        [Route("Err401")]
-        public IActionResult Err401() // Unauthorized // Access Denied
-        {
-            return View();
-        }
         [Route("Err500")]
         public IActionResult Err500() // Internal Server Error
         {

@@ -1,15 +1,13 @@
-﻿
+﻿@model ResultCheckRegisterDto
+
 @{
     ViewData["Title"] = "SignUp";
     Layout = "~/Views/LayoutLogin/Index.cshtml";
 }
 
-<h1>SignUp</h1>
-
 <div class="container">
     <div class="col-md-12 content-center">
         <div class="card-plain">
-            <form class="form" method="" action="">
                 <div class="header">
                     <div class="logo-container">
                         <img src="~/images/logo.svg" alt="">
@@ -17,21 +15,40 @@
                     <h5>Kayıt Ol</h5>
                     <span>Yeni Üye Kaydı</span>
                 </div>
+            <form class="form" method="POST">
                 <div class="content">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Kullanıcı Adı">
+                        <input type="text" class="form-control" asp-for="Name" placeholder="İsim">
                         <span class="input-group-addon">
                             <i class="zmdi zmdi-account-circle"></i>
                         </span>
                     </div>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Email">
+                        <input type="text" class="form-control" asp-for="Surname" placeholder="Soyisim">
+                        <span class="input-group-addon">
+                            <i class="zmdi zmdi-account-circle"></i>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" asp-for="Username" placeholder="Kullanıcı Adı">
+                        <span class="input-group-addon">
+                            <i class="zmdi zmdi-account-circle"></i>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" class="form-control" asp-for="Email" placeholder="Email">
                         <span class="input-group-addon">
                             <i class="zmdi zmdi-email"></i>
                         </span>
                     </div>
                     <div class="input-group">
-                        <input type="password" placeholder="Şifre" class="form-control" />
+                        <input type="password" asp-for="Password" placeholder="Şifre" class="form-control" />
+                        <span class="input-group-addon">
+                            <i class="zmdi zmdi-lock"></i>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" asp-for="ConfirmPassword" placeholder="Şifre Tekrar" class="form-control" />
                         <span class="input-group-addon">
                             <i class="zmdi zmdi-lock"></i>
                         </span>
@@ -44,8 +61,8 @@
                     </label>
                 </div>
                 <div class="footer text-center">
-                    <a href="#" class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light">KAYIT OL</a>
-                    <h6 class="m-t-20"><a class="link" href="/">Zaten bir üyeliğiniz var mı?</a></h6>
+                    <button type="submit" class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light">KAYIT OL</button>
+                    <h6 class="m-t-20"><a class="link" href="/Login/SignIn">Zaten bir üyeliğiniz var mı?</a></h6>
                 </div>
             </form>
         </div>

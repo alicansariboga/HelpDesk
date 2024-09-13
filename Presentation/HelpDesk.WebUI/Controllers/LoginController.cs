@@ -60,11 +60,11 @@ namespace HelpDesk.WebUI.Controllers
                     {
                         return RedirectToAction("Index", "Dashboard");
                     }
-                    if(userRole == "Admin")
+                    if (userRole == "Admin")
                     {
                         return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
                     }
-                    
+
                 }
             }
             return View();
@@ -75,15 +75,27 @@ namespace HelpDesk.WebUI.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> SignUp(CreateRegisterDto createRegisterDto)
+        public async Task<IActionResult> SignUp(ResultCheckRegisterDto resultCheckRegister)
         {
-            var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createRegisterDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7099/api/Registers/", stringContent);
-            if (responseMessage.IsSuccessStatusCode)
+            if (resultCheckRegister.Password == resultCheckRegister.ConfirmPassword)
             {
-                return RedirectToAction("SignIn", "Login");
+                var createAppUserDto = new CreateRegisterDto
+                {
+                    Name = resultCheckRegister.Name,
+                    Surname = resultCheckRegister.Surname,
+                    Username = resultCheckRegister.Username,
+                    Email = resultCheckRegister.Email,
+                    Password = resultCheckRegister.Password,
+                    PhoneNumber = "",
+                };
+                var client = _httpClientFactory.CreateClient();
+                var jsonData = JsonConvert.SerializeObject(createAppUserDto);
+                StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                var responseMessage = await client.PostAsync("https://localhost:7099/api/Registers/", stringContent);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("SignIn", "Login");
+                }
             }
             return View();
         }

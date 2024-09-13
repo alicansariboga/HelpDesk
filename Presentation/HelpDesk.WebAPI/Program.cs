@@ -1,9 +1,11 @@
 using HelpDesk.Application.Interfaces.AppUserInterfaces;
+using HelpDesk.Application.Interfaces.FileInterfaces;
 using HelpDesk.Application.Interfaces.MailInterfaces;
 using HelpDesk.Application.Interfaces.StaffDepartmentInterfaces;
 using HelpDesk.Application.Interfaces.TicketInterfaces;
 using HelpDesk.Application.Tools;
 using HelpDesk.Persistence.Repositories.AppUserRepositories;
+using HelpDesk.Persistence.Repositories.FileRepositories;
 using HelpDesk.Persistence.Repositories.MailRepositories;
 using HelpDesk.Persistence.Repositories.StaffDepartmentRepositories;
 using HelpDesk.Persistence.Repositories.TicketRepositories;
@@ -12,6 +14,18 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("https://localhost:7099",
+                                "http://localhost:7099")
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
 
 builder.Services.AddHttpClient();
 
@@ -39,6 +53,7 @@ builder.Services.AddScoped(typeof(IAppUserRepository), typeof(AppUserRepository)
 builder.Services.AddScoped(typeof(ITicketRepository), typeof(TicketRepository));
 builder.Services.AddScoped(typeof(IStaffDepartmentRepository), typeof(StaffDepartmentRepository));
 builder.Services.AddScoped(typeof(IMailRepository), typeof(MailRepository));
+builder.Services.AddScoped(typeof(IFileRepository), typeof(FileRepository));
 #endregion
 
 // ServiceRegistration

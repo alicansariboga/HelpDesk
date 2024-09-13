@@ -12,8 +12,10 @@
         {
             await _repository.CreateAsync(new TicketDocument {
                 File = request.File,
+                FileData = request.FileData,
                 CreatedDate = request.CreatedDate,
                 TicketId = request.TicketId,
+                MailId = request.MailId,
             });
         }
     }

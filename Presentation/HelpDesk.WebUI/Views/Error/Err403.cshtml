@@ -1,7 +1,7 @@
 ﻿@using System.Security.Claims
 
 @{
-    ViewData["Title"] = "Err401";
+    ViewData["Title"] = "Err403";
     Layout = "~/Views/LayoutLogin/Index.cshtml";
     var userRole = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)?.Value;
 }
@@ -16,7 +16,7 @@
                         <div class="logo-container">
                             <img src="~/images/logo.svg" alt="">
                         </div>
-                        <h5>401 Hatası</h5>
+                        <h5>403 Hatası</h5>
                         <span>Yetkisiz erişim tespit edildi.</span> </br>
                         <span>Herhangi bir sorun olduğunu düşünüyorsanız eğer yönetinize başvurunuz.</span>
                     </div>

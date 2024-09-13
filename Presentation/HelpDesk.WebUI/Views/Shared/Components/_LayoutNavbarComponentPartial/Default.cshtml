@@ -1,8 +1,20 @@
-﻿<nav class="navbar">
+﻿@using System.Security.Claims
+@{
+    var userRole = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)?.Value;
+}
+
+<nav class="navbar">
     <div class="col-12">
         <div class="navbar-header">
             <a href="javascript:void(0);" class="bars"></a>
-            <a class="navbar-brand" href="index.html"><img src="~/images/logo.svg" width="30" alt="Compass"><span class="m-l-10">HELPDESK</span></a>
+            @if(userRole == "Admin")
+            {
+                <a class="navbar-brand" href="/Admin/Dashboard/Index"><img src="~/images/logo.svg" width="30" alt="Compass"><span class="m-l-10">HELPDESK</span></a>
+            }
+            else
+            {
+                <a class="navbar-brand" href="/Dashboard/Index"><img src="~/images/logo.svg" width="30" alt="Compass"><span class="m-l-10">HELPDESK</span></a>
+            }
         </div>
         <ul class="nav navbar-nav navbar-left">
             <li><a href="javascript:void(0);" class="ls-toggle-btn" data-close="true"><i class="zmdi zmdi-swap"></i></a></li>
@@ -11,7 +23,7 @@
                     <input type="text" class="form-control" placeholder="Sayfada ara...">
                     <span class="input-group-addon">
                         <i class="zmdi zmdi-search"></i>
-                    </span>
+                    </span> 
                 </div>
             </li>
         </ul>

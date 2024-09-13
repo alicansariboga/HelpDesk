@@ -28,7 +28,7 @@
                 values.AppUserId = user.Id;
                 //values.Role = (await _appRoleRepository.GetByFilterAsync(x => x.AppRoleID == user.AppRoleID)).Name;
                 var userRole = await _appUserRoleRepository.GetByFilterAsync(x => x.AppUserId == user.Id);
-                values.Role = (await _appRoleRepository.GetByFilterAsync(x => x.Id == userRole.AppRoleId)).Name; ;
+                values.Role = (await _appRoleRepository.GetByFilterAsync(x => x.Id == userRole.AppRoleId)).Name;
             }
             return values;
         }
